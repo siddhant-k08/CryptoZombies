@@ -11,24 +11,30 @@
 
     <script>
       var cryptoZombies;
-
+      var userAccount;
       function startApp() {
         var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
         cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+
+        // 2. Create `setInterval` code here
+        var accountInterval = setInterval(function() {
+          if (web3.eth.accounts[0] !== userAccount) {
+            userAccount = web3.eth.accounts[0];
+            getZombiesByOwner(userAccount).then(displayZombies);
+          }
+        }, 100);
       }
 
       function getZombieDetails(id) {
-        return cryptoZombies.methods.zombies(id).call();
+        return cryptoZombies.methods.zombies(id).call()
       }
 
-      // 1. Define `zombieToOwner` here
-      function zombieToOwner(id){
-        return cryptoZombies.methods.zombieToOwner(id).call();
+      function zombieToOwner(id) {
+        return cryptoZombies.methods.zombieToOwner(id).call()
       }
 
-      // 2. Define `getZombiesByOwner` here
-      function getZombiesByOwner(owner){
-        return cryptoZombies.methods.getZombiesByOwner(owner).call();
+      function getZombiesByOwner(owner) {
+        return cryptoZombies.methods.getZombiesByOwner(owner).call()
       }
 
       window.addEventListener('load', function() {
@@ -44,7 +50,6 @@
 
         // Now you can start your app & access web3 freely:
         startApp()
-
       })
     </script>
   </body>
