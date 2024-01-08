@@ -28,6 +28,8 @@
             .then(displayZombies);
           }
         }, 100);
+
+        // Start here
       }
 
       function displayZombies(ids) {
@@ -83,11 +85,10 @@
         });
       }
 
-      // Start here
-      function levelUp(zombieId){
-         $("#txStatus").text("Leveling up your zombie...");
+      function levelUp(zombieId) {
+        $("#txStatus").text("Leveling up your zombie...");
         return cryptoZombies.methods.levelUp(zombieId)
-        .send({ from: userAccount, value: web3js.utils.toWei("0.001", "ether") })
+        .send({ from: userAccount, value: web3.utils.toWei("0.001", "ether") })
         .on("receipt", function(receipt) {
           $("#txStatus").text("Power overwhelming! Zombie successfully leveled up");
         })
