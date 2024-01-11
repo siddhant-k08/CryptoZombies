@@ -7,7 +7,7 @@ import "./safemath.sol";
 
 /// @title A contract that manages transferring zombie ownership
 /// @author siddhantk08.eth
-/// @dev ERC721 sucks
+/// @dev ERC721 is so confusing, cannot comprehend at all !!! 
 contract ZombieOwnership is ZombieAttack, ERC721 {
 
   using SafeMath for uint256;
